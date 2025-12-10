@@ -7,306 +7,440 @@
 <link rel="manifest" href="/site.webmanifest">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIGRE AGORA | Hub</title>
-    
-    <!-- Fonts -->
+    <title>Migre Agora | O Físico Nunca Foi o Final</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Tailwind Config to extend theme -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Space Grotesk"', 'sans-serif'],
-                    },
-                    colors: {
-                        'neon-green': '#4ade80',
-                        'void-black': '#050505',
-                        'yt-red': '#FF0000',
-                        'insta-purple': '#E1306C',
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
     <style>
-        /* CORE RESET & SCROLLBAR */
-        html, body {
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            font-family: 'Space Grotesk', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            background-color: #000; /* Default to black */
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0a0a0a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4ade80;
-        }
-
-        /* GLASSMORPHISM UTILITIES */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(74, 222, 128, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        /* 3D TILT CONTAINER */
-        .tilt-element {
-            transform-style: preserve-3d;
-            transform: perspective(1000px);
-            will-change: transform;
-        }
-
-        /* SPECIFIC GLOWS */
-        .logo-glow {
-            filter: drop-shadow(0 0 35px rgba(74, 222, 128, 0.6));
-        }
-
-        .neon-text-green {
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
-        }
-
-        /* YOUTUBE HOVER FX */
-        .btn-yt:hover {
-            border-color: rgba(255, 0, 0, 0.5);
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.2), inset 0 0 10px rgba(255, 0, 0, 0.1);
-            background: rgba(255, 0, 0, 0.03);
-        }
-        .btn-yt:hover .icon-yt {
-            filter: drop-shadow(0 0 8px #FF0000);
-        }
-
-        /* INSTAGRAM HOVER FX */
-        .btn-insta:hover {
-            border-color: rgba(225, 48, 108, 0.5);
-            box-shadow: 0 0 25px rgba(225, 48, 108, 0.2), inset 0 0 10px rgba(225, 48, 108, 0.1);
-            background: rgba(225, 48, 108, 0.03);
-        }
-        .btn-insta:hover .icon-insta {
-            filter: drop-shadow(0 0 8px #E1306C);
+        /* BASE & RESET */
+        :root {
+            --neon-green: #4ade80;
+            --dark-void: #050505;
         }
         
-        /* MIX BLEND FIX FOR LOGO */
-        .logo-blend {
-            mix-blend-mode: screen;
-            /* Contrast and Brightness helps push dark greys to pure black for better removal */
-            filter: contrast(1.2) brightness(1.1) drop-shadow(0 0 35px rgba(74, 222, 128, 0.6));
+        body {
+            background-color: var(--dark-void);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, .brand-font {
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        /* CANVAS LAYER - Updated Z-Index for visibility */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Changed from -1 to 0 to ensure it sits above body background */
+            pointer-events: none;
+        }
+
+        /* NEON FRAME */
+        .neon-frame {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            border: 1px solid var(--neon-green);
+            box-shadow: inset 0 0 20px rgba(74, 222, 128, 0.1);
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        /* GLASSMORPHISM UTILS */
+        .glass-card {
+            background: rgba(10, 10, 10, 0.6); /* Slightly darker for better text contrast */
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(74, 222, 128, 0.15); /* Greenish tint border */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-btn {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(74, 222, 128, 0.2), /* Green highlight */
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .glass-btn:hover::before {
+            left: 100%;
+        }
+
+        /* GLOW EFFECTS */
+        .text-glow {
+            text-shadow: 0 0 15px rgba(74, 222, 128, 0.6), 0 0 30px rgba(74, 222, 128, 0.4);
+        }
+
+        .glow-red:hover {
+            border-color: rgba(239, 68, 68, 0.8);
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.4);
+        }
+
+        .glow-purple:hover {
+            border-color: rgba(168, 85, 247, 0.8);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
+        }
+
+        /* MIST OVERLAY */
+        .mist-overlay {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50vh;
+            background: linear-gradient(to top, rgba(5, 5, 5, 1) 0%, rgba(5, 5, 5, 0.5) 40%, transparent 100%);
+            z-index: 5; /* Above canvas, below content */
+            pointer-events: none;
+        }
+
+        /* ANIMATIONS */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* SCROLLBAR HIDE */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center selection:bg-neon-green selection:text-black relative">
+<body class="antialiased selection:bg-green-500 selection:text-black">
 
-    <!-- VIDEO BACKGROUND -->
-    <!-- Removed bg-[#050505] from container so it doesn't hide video -->
-    <div class="fixed top-0 left-0 w-full h-full -z-20 overflow-hidden bg-transparent">
-        <video id="bg-video" autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover opacity-100">
-            <source src="fundo.webm" type="video/webm">
-            <!-- Fallback text just in case -->
-        </video>
-    </div>
+    <!-- CANVAS BACKGROUND -->
+    <canvas id="bg-canvas"></canvas>
+    
+    <!-- MIST FOG -->
+    <div class="mist-overlay"></div>
 
-    <!-- OVERLAY SHADOW -->
-    <!-- Reduced opacity to 50% to make video more visible -->
-    <div class="fixed top-0 left-0 w-full h-full -z-10 bg-black/50 pointer-events-none"></div>
+    <!-- BORDER FRAME -->
+    <div class="neon-frame"></div>
 
-    <main class="w-full max-w-2xl px-6 py-12 flex flex-col items-center gap-10 z-10 relative">
+    <!-- MAIN CONTAINER -->
+    <main class="relative z-10 min-h-screen flex flex-col items-center justify-center p-6 md:p-12">
         
-        <!-- SECTION 1: HERO -->
-        <header class="flex flex-col items-center text-center space-y-4 animate-float">
-            <!-- Logo with Tilt -->
-            <div class="tilt-element cursor-pointer mb-2">
-                <!-- 
-                   UPDATES: 
-                   1. mix-blend-screen: Removes black background.
-                   2. filter: contrast(1.2): Helps remove greyish blacks.
-                -->
-                <img src="logo.png" alt="Migre Agora Logo" 
-                     class="w-64 logo-blend object-contain transition-transform duration-500 hover:scale-105">
+        <!-- HERO SECTION -->
+        <div class="text-center mb-16 relative">
+            <!-- Logo Container -->
+            <div class="mb-8 relative inline-block group">
+                <div class="absolute -inset-4 bg-green-500 rounded-full blur-xl opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                <!-- Logo Image with fallback logic -->
+                <img src="logo.png" alt="MIGRE AGORA" class="relative w-28 h-28 md:w-40 md:h-40 mx-auto object-contain drop-shadow-[0_0_25px_rgba(74,222,128,0.6)]" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex';">
+                
+                <!-- Fallback Logo (displayed if image fails) -->
+                <div id="logo-fallback" class="hidden w-28 h-28 md:w-40 md:h-40 mx-auto border-[3px] border-green-400/50 rounded-full items-center justify-center bg-black/60 backdrop-blur-md text-green-400 text-4xl font-bold brand-font shadow-[0_0_30px_rgba(74,222,128,0.4)] relative z-10">
+                    MA
+                </div>
             </div>
 
-            <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white mt-4">
+            <h1 class="text-5xl md:text-8xl font-bold text-white tracking-widest mb-3 brand-font text-glow animate-float" style="animation-delay: 0.1s;">
                 MIGRE AGORA
             </h1>
-            <p class="text-neon-green neon-text-green text-sm md:text-base tracking-[0.2em] font-medium uppercase">
-                O Físico Nunca Foi O Final
-            </p>
-        </header>
+            
+            <h2 class="text-sm md:text-xl text-gray-300 tracking-[0.4em] font-light uppercase border-b border-green-500/50 pb-6 inline-block">
+                O Físico Nunca Foi o Final
+            </h2>
+        </div>
 
-        <!-- SECTION 2: CHANNELS -->
-        <nav class="w-full flex flex-col gap-4">
+        <!-- SOCIAL LINKS -->
+        <div class="w-full max-w-md space-y-5 mb-24">
             
             <!-- YouTube Button -->
-            <a href="https://www.youtube.com/@MigreAgora" target="_blank" class="tilt-element group no-underline">
-                <div class="btn-yt glass-panel rounded-xl p-4 flex items-center gap-4 transition-all duration-300 relative overflow-hidden">
-                    <div class="p-3 rounded-full bg-white/5 border border-white/10 group-hover:border-red-500/30 transition-colors">
-                        <!-- YouTube Icon -->
-                        <svg class="icon-yt w-8 h-8 text-yt-red transition-all duration-300" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            <a href="https://youtube.com/@MigreAgora" target="_blank" class="tilt-card glass-btn glow-red flex items-center justify-between p-5 rounded-2xl group cursor-pointer no-underline text-white">
+                <div class="flex items-center gap-5">
+                    <div class="w-14 h-14 rounded-full bg-red-500/20 flex items-center justify-center border border-red-500/30 group-hover:bg-red-500/40 transition shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+                        <!-- YouTube SVG -->
+                        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
                         </svg>
                     </div>
-                    <div class="flex flex-col">
-                        <span class="text-lg font-bold text-white group-hover:text-yt-red transition-colors">Inscreva-se no YouTube</span>
-                        <span class="text-xs text-gray-400 font-light tracking-wide">Tutoriais & Mentalidade</span>
+                    <div class="text-left">
+                        <div class="font-bold text-lg brand-font tracking-wide text-gray-100">Inscreva-se no YouTube</div>
+                        <div class="text-xs text-gray-400 font-mono group-hover:text-red-400 transition">@MigreAgora</div>
                     </div>
-                    <div class="absolute right-4 text-gray-600 group-hover:text-yt-red transition-colors">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </div>
+                </div>
+                <div class="opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-1">
+                    <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </div>
             </a>
 
             <!-- Instagram Button -->
-            <a href="https://www.instagram.com/migreagora" target="_blank" class="tilt-element group no-underline">
-                <div class="btn-insta glass-panel rounded-xl p-4 flex items-center gap-4 transition-all duration-300 relative overflow-hidden">
-                    <div class="p-3 rounded-full bg-white/5 border border-white/10 group-hover:border-purple-500/30 transition-colors">
-                        <!-- Instagram Icon (Gradient Definition in CSS) -->
-                        <svg class="icon-insta w-8 h-8 transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="url(#insta-gradient)" stroke-width="2">
-                            <defs>
-                                <linearGradient id="insta-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#f09433" />
-                                    <stop offset="25%" style="stop-color:#e6683c" />
-                                    <stop offset="50%" style="stop-color:#dc2743" />
-                                    <stop offset="75%" style="stop-color:#cc2366" />
-                                    <stop offset="100%" style="stop-color:#bc1888" />
-                                </linearGradient>
-                            </defs>
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            <a href="https://instagram.com/migreagora" target="_blank" class="tilt-card glass-btn glow-purple flex items-center justify-between p-5 rounded-2xl group cursor-pointer no-underline text-white">
+                <div class="flex items-center gap-5">
+                    <div class="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center border border-purple-500/30 group-hover:bg-purple-500/40 transition shadow-[0_0_15px_rgba(168,85,247,0.2)]">
+                        <!-- Instagram SVG -->
+                        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                         </svg>
                     </div>
-                    <div class="flex flex-col">
-                        <span class="text-lg font-bold text-white group-hover:text-[#E1306C] transition-colors">Siga no Instagram</span>
-                        <span class="text-xs text-gray-400 font-light tracking-wide">Bastidores & Insights</span>
+                    <div class="text-left">
+                        <div class="font-bold text-lg brand-font tracking-wide text-gray-100">Siga no Instagram</div>
+                        <div class="text-xs text-gray-400 font-mono group-hover:text-purple-400 transition">@migreagora</div>
                     </div>
-                    <div class="absolute right-4 text-gray-600 group-hover:text-[#E1306C] transition-colors">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </div>
+                </div>
+                <div class="opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-1">
+                    <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </div>
             </a>
 
-        </nav>
+        </div>
 
-        <!-- SECTION 3: MANIFESTO -->
-        <section class="w-full tilt-element">
-            <div class="glass-panel rounded-2xl p-8 text-center relative overflow-hidden group">
-                <!-- Subtle Gradient Overlay -->
-                <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                
-                <p class="text-gray-300 leading-relaxed text-base md:text-lg font-light relative z-10">
-                    "A <span class="text-white font-medium">Migre Agora</span> nasceu da observação de uma lacuna silenciosa no mercado. Enquanto grandes corporações investiam milhões em transformação digital, o pequeno empreendedor permanecia refém. <br><br>
-                    <span class="text-neon-green/90">Nossa missão é democratizar a eficiência.</span>"
-                </p>
+        <!-- MANIFESTO -->
+        <div class="tilt-card glass-card max-w-2xl p-8 md:p-12 rounded-2xl relative overflow-hidden group border-t border-white/10">
+            <!-- Decorative corner accent -->
+            <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-green-500/20 to-transparent rounded-bl-full pointer-events-none"></div>
+            
+            <h3 class="text-green-400 text-sm font-bold tracking-[0.2em] mb-6 uppercase flex items-center gap-3">
+                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_#4ade80]"></span>
+                Manifesto
+            </h3>
+            <p class="text-gray-200 text-lg md:text-xl leading-relaxed font-light text-justify opacity-90">
+                A <strong class="text-white font-semibold">Migre Agora</strong> nasceu da observação de uma lacuna silenciosa no mercado. Enquanto grandes corporações investiam milhões em transformação digital, o pequeno empreendedor permanecia refém. Nossa missão é <span class="text-green-300 font-medium drop-shadow-sm">democratizar a eficiência</span>.
+            </p>
+            
+            <!-- Tech decoration lines -->
+            <div class="absolute bottom-5 right-5 flex space-x-1.5 opacity-60">
+                <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-bounce" style="animation-delay: 0s"></div>
+                <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
             </div>
-        </section>
+        </div>
 
         <!-- FOOTER -->
-        <footer class="mt-8 text-center">
-            <p class="text-[10px] md:text-xs text-gray-600 tracking-[0.3em] font-bold">
-                MIGRE AGORA AGENCY © 2025
+        <footer class="mt-24 text-center pb-8">
+            <p class="text-[11px] md:text-xs text-gray-500 tracking-[0.3em] font-mono hover:text-green-400/80 transition duration-300 cursor-default uppercase">
+                Migre Agora Agency © 2025
             </p>
         </footer>
 
     </main>
 
-    <!-- CREATIVE CODING SCRIPTS -->
     <script>
         /**
-         * ------------------------------------------
-         * PART 1: ROBUST VIDEO LOADER
-         * ------------------------------------------
+         * VANILLA JS CREATIVE CODING ENGINE
+         * Theme: "Neon Monsoon"
+         * Purpose: High-performance canvas animation
          */
-        const video = document.getElementById('bg-video');
 
-        // Function to attempt play
-        const attemptPlay = () => {
-            if (video && video.paused) {
-                video.play().catch(e => console.log('Video autoplay restrained, waiting for interaction...'));
-            }
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let particles = [];
+        let meteors = [];
+
+        // IMPROVED CONFIGURATION FOR VISIBILITY
+        const CONFIG = {
+            particleCount: 90,        // More nodes
+            connectionDist: 140,      // Longer lines
+            meteorCount: 35,          // More rain
+            baseColor: { r: 74, g: 222, b: 128 }, // #4ade80
+            bgOpacity: 0.8            // Particle brightness
         };
 
-        // Attempt immediately
-        attemptPlay();
-
-        // Attempt on any user interaction (Critical for Mobile)
-        const userEvents = ['touchstart', 'click', 'scroll', 'keydown'];
-        userEvents.forEach(event => {
-            document.addEventListener(event, function() {
-                attemptPlay();
-            }, { once: true });
+        // Mouse tracking
+        let mouse = { x: null, y: null };
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
         });
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            // Re-init on massive resize to keep density consistent
+            if(width > 0 && height > 0) init();
+        }
+        window.addEventListener('resize', resize);
         
-        // Polling check (Aggressive fallback)
-        const checkInterval = setInterval(() => {
-            if (video && !video.paused) {
-                clearInterval(checkInterval); // Stop checking once playing
-            } else {
-                attemptPlay();
+        /* --- CLASS: NODE (The Static/Floating Network) --- */
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = (Math.random() - 0.5) * 0.8;
+                this.size = Math.random() * 2.5 + 0.5;
             }
-        }, 1000);
 
-        /**
-         * ------------------------------------------
-         * PART 2: 3D TILT PHYSICS ENGINE
-         * ------------------------------------------
-         */
-        const tiltElements = document.querySelectorAll('.tilt-element');
-        
-        tiltElements.forEach(el => {
-            el.addEventListener('mousemove', handleMove);
-            el.addEventListener('mouseleave', handleLeave);
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Bounce off edges (keep them inside for better density)
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+
+                // Mouse interaction
+                if (mouse.x != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 120) {
+                        const forceDirectionX = dx / distance;
+                        const forceDirectionY = dy / distance;
+                        const force = (120 - distance) / 120;
+                        this.x -= forceDirectionX * force * 3;
+                        this.y -= forceDirectionY * force * 3;
+                    }
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(${CONFIG.baseColor.r}, ${CONFIG.baseColor.g}, ${CONFIG.baseColor.b}, 0.5)`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        /* --- CLASS: METEOR (The Falling Neon Rain) --- */
+        class Meteor {
+            constructor() {
+                this.reset(true);
+            }
+
+            reset(initial = false) {
+                this.x = Math.random() * width;
+                this.y = initial ? Math.random() * height : -100 - Math.random() * 200;
+                this.length = 40 + Math.random() * 80;
+                this.speed = 5 + Math.random() * 10;
+                this.width = 0.5 + Math.random() * 1.5;
+                // Brightness
+                this.alpha = 0.2 + Math.random() * 0.6; 
+            }
+
+            update() {
+                this.y += this.speed;
+                if (this.y > height + 200) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                // Gradient trail for the drop
+                const gradient = ctx.createLinearGradient(this.x, this.y, this.x, this.y - this.length);
+                gradient.addColorStop(0, `rgba(${CONFIG.baseColor.r}, ${CONFIG.baseColor.g}, ${CONFIG.baseColor.b}, ${this.alpha})`);
+                gradient.addColorStop(1, `rgba(${CONFIG.baseColor.r}, ${CONFIG.baseColor.g}, ${CONFIG.baseColor.b}, 0)`);
+
+                ctx.beginPath();
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = this.width;
+                ctx.lineCap = 'round'; // Softer ends
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(this.x, this.y - this.length);
+                ctx.stroke();
+            }
+        }
+
+        function init() {
+            particles = [];
+            meteors = [];
+            for (let i = 0; i < CONFIG.particleCount; i++) particles.push(new Particle());
+            for (let i = 0; i < CONFIG.meteorCount; i++) meteors.push(new Meteor());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            // 1. Draw Network Lines
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let dx = particles[a].x - particles[b].x;
+                    let dy = particles[a].y - particles[b].y;
+                    let distance = Math.sqrt(dx*dx + dy*dy);
+
+                    if (distance < CONFIG.connectionDist) {
+                        let opacity = 1 - (distance / CONFIG.connectionDist);
+                        // Increased line opacity for visibility
+                        ctx.strokeStyle = `rgba(${CONFIG.baseColor.r}, ${CONFIG.baseColor.g}, ${CONFIG.baseColor.b}, ${opacity * 0.35})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // 2. Particles
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            // 3. Meteors (Rain)
+            meteors.forEach(m => {
+                m.update();
+                m.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        // Boot
+        resize();
+        animate();
+
+
+        /* --- UI PHYSICS --- */
+        const tiltCards = document.querySelectorAll('.tilt-card');
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -8; // Reduced rotation for elegance
+                const rotateY = ((x - centerX) / centerX) * 8;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
         });
-        
-        function handleMove(e) {
-            const el = this;
-            const height = el.clientHeight;
-            const width = el.clientWidth;
-            
-            const rect = el.getBoundingClientRect();
-            const xVal = e.clientX - rect.left;
-            const yVal = e.clientY - rect.top;
-            
-            const yRotation = 15 * ((xVal - width / 2) / width);
-            const xRotation = -15 * ((yVal - height / 2) / height);
-            
-            const string = `perspective(1000px) scale(1.02) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
-            
-            el.style.transform = string;
-        }
-        
-        function handleLeave() {
-            this.style.transform = `perspective(1000px) scale(1) rotateX(0) rotateY(0)`;
-        }
     </script>
 </body>
 </html>
