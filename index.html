@@ -159,13 +159,14 @@
         <!-- HERO SECTION -->
         <div class="text-center mb-16 relative">
             <!-- Logo Container -->
-            <div class="mb-8 relative inline-block group">
+            <div class="mb-10 relative inline-block group">
                 <div class="absolute -inset-4 bg-green-500 rounded-full blur-xl opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                 <!-- Logo Image with fallback logic -->
-                <img src="logo.png" alt="MIGRE AGORA" class="relative w-28 h-28 md:w-40 md:h-40 mx-auto object-contain drop-shadow-[0_0_25px_rgba(74,222,128,0.6)]" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex';">
+                <!-- Increased size: w-40 h-40 (mobile) / w-64 h-64 (desktop) -->
+                <img src="logo.png" alt="MIGRE AGORA" class="relative w-40 h-40 md:w-64 md:h-64 mx-auto object-contain drop-shadow-[0_0_25px_rgba(74,222,128,0.6)]" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex';">
                 
                 <!-- Fallback Logo (displayed if image fails) -->
-                <div id="logo-fallback" class="hidden w-28 h-28 md:w-40 md:h-40 mx-auto border-[3px] border-green-400/50 rounded-full items-center justify-center bg-black/60 backdrop-blur-md text-green-400 text-4xl font-bold brand-font shadow-[0_0_30px_rgba(74,222,128,0.4)] relative z-10">
+                <div id="logo-fallback" class="hidden w-40 h-40 md:w-64 md:h-64 mx-auto border-[3px] border-green-400/50 rounded-full items-center justify-center bg-black/60 backdrop-blur-md text-green-400 text-6xl md:text-8xl font-bold brand-font shadow-[0_0_30px_rgba(74,222,128,0.4)] relative z-10">
                     MA
                 </div>
             </div>
