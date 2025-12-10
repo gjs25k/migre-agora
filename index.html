@@ -48,14 +48,14 @@
 
     <style>
         /* CORE RESET & SCROLLBAR */
-        body {
-            background-color: #050505;
-            color: white;
+        html, body {
             margin: 0;
             padding: 0;
             overflow-x: hidden;
             font-family: 'Space Grotesk', sans-serif;
             -webkit-font-smoothing: antialiased;
+            /* CRITICAL: Transparent background to allow video (z-index -20) to show through */
+            background-color: transparent; 
         }
 
         ::-webkit-scrollbar {
@@ -91,7 +91,7 @@
 
         /* SPECIFIC GLOWS */
         .logo-glow {
-            filter: drop-shadow(0 0 25px rgba(74, 222, 128, 0.5));
+            filter: drop-shadow(0 0 35px rgba(74, 222, 128, 0.6));
         }
 
         .neon-text-green {
@@ -119,13 +119,14 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center selection:bg-neon-green selection:text-black relative bg-[#050505]">
+<body class="min-h-screen flex flex-col items-center justify-center selection:bg-neon-green selection:text-black relative">
 
     <!-- VIDEO BACKGROUND -->
-    <!-- Added webkit-playsinline and playsinline for better mobile support -->
+    <!-- bg-[#050505] acts as a fallback if video fails to load, but the video sits on top -->
     <div class="fixed top-0 left-0 w-full h-full -z-20 overflow-hidden bg-[#050505]">
-        <video autoplay loop muted playsinline webkit-playsinline class="w-full h-full object-cover opacity-90">
+        <video id="bg-video" autoplay loop muted playsinline webkit-playsinline class="w-full h-full object-cover opacity-90">
             <source src="00:04.mp4" type="video/mp4">
+            Your browser does not support the video tag.
         </video>
     </div>
 
@@ -138,9 +139,13 @@
         <header class="flex flex-col items-center text-center space-y-4 animate-float">
             <!-- Logo with Tilt -->
             <div class="tilt-element cursor-pointer mb-2">
-                <!-- Removed fallback div, increased size to w-48 (approx 12rem) -->
+                <!-- 
+                   UPDATES: 
+                   1. mix-blend-screen: Removes black background from the image (makes black transparent).
+                   2. w-64: Increased size (approx 256px).
+                -->
                 <img src="logo.png" alt="Migre Agora Logo" 
-                     class="w-48 h-48 object-contain logo-glow transition-transform duration-500 hover:scale-105">
+                     class="w-64 mix-blend-screen object-contain logo-glow transition-transform duration-500 hover:scale-105">
             </div>
 
             <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white mt-4">
@@ -229,6 +234,24 @@
 
     <!-- CREATIVE CODING SCRIPTS -->
     <script>
+        /**
+         * ------------------------------------------
+         * PART 1: MOBILE VIDEO AUTOPLAY FIX
+         * ------------------------------------------
+         */
+        document.addEventListener('touchstart', function() {
+            const video = document.getElementById('bg-video');
+            if (video && video.paused) {
+                video.play().catch(e => console.log('Video play error:', e));
+            }
+        }, { once: true });
+
+        // Backup: Try playing immediately in case browser allows it
+        window.addEventListener('load', function() {
+            const video = document.getElementById('bg-video');
+            if (video) video.play().catch(e => console.log('Autoplay blocked, waiting for touch.'));
+        });
+
         /**
          * ------------------------------------------
          * PART 2: 3D TILT PHYSICS ENGINE
