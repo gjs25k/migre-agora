@@ -1,450 +1,257 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Migre Agora | O Físico Nunca Foi o Final</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Migre Agora | Tecnologia contra Taxas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Migre Agora | Tecnologia para Beauty</title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦅</text></svg>">
     
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            DEFAULT: '#00df82',
-                            dark: '#00b368',
-                            light: '#33e69b'
-                        }
-                    },
-                    animation: {
-                        'float': 'float 3s ease-in-out infinite',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-5px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        /* Estilos Personalizados para Barra de Rolagem e Animações */
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
+        :root {
+            --bg: #09090B;
+            --card: #18181B;
+            --brand: #00DF82; /* Verde Neon */
+            --brand-glow: rgba(0, 223, 130, 0.2);
+            --text: #FFFFFF;
+            --text-muted: #A1A1AA;
         }
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 480px; margin: 0 auto; padding: 40px 20px; text-align: center; }
+
+        /* --- HERO --- */
+        .profile-area { margin-bottom: 20px; animation: fadeDown 1s ease; }
+        
+        .logo-wrapper {
+            width: 100px; height: 100px; margin: 0 auto 20px;
+            border-radius: 50%; padding: 3px;
+            background: linear-gradient(135deg, var(--brand), #000);
+            box-shadow: 0 0 30px var(--brand-glow);
+        }
+        .logo-img { width: 100%; height: 100%; border-radius: 50%; background: #000; object-fit: contain; }
+
+        h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; line-height: 1.1; margin-bottom: 10px; }
+        .highlight { color: var(--brand); }
+
+        p.bio { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 30px; }
+
+        /* --- SEÇÃO: PERSUASÃO (WHY US) --- */
+        .why-section {
+            display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px; text-align: left;
+        }
+
+        .why-card {
+            background: linear-gradient(145deg, #1A1A1A, #0F0F0F);
+            border: 1px solid #333;
+            padding: 20px; border-radius: 12px;
+            display: flex; gap: 15px; align-items: flex-start;
+            transition: 0.3s;
+        }
+        .why-card:hover { border-color: var(--brand); box-shadow: 0 0 15px var(--brand-glow); }
+
+        .why-icon { font-size: 1.5rem; background: rgba(0, 223, 130, 0.1); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: var(--brand); flex-shrink: 0; }
+        
+        .why-content h3 { color: #FFF; font-size: 1rem; font-weight: 700; margin-bottom: 5px; }
+        .why-content p { color: #888; font-size: 0.8rem; line-height: 1.4; }
+
+        /* --- AVISO UNIVERSAL --- */
+        .universal-notice {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed var(--text-muted);
+            padding: 15px; border-radius: 10px;
+            font-size: 0.75rem; color: #BBB; margin-bottom: 40px;
+            text-align: left; line-height: 1.5;
+        }
+        .universal-notice strong { color: var(--brand); }
+
+        /* --- VITRINE --- */
+        .section-title {
+            font-family: 'Space Grotesk'; font-size: 0.9rem; color: var(--text);
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;
+            display: flex; align-items: center; gap: 10px; justify-content: center;
+        }
+        .section-title::before, .section-title::after { content: ''; height: 1px; width: 30px; background: #333; }
+
+        .model-card {
+            background: linear-gradient(180deg, #222, #111);
+            border: 1px solid #333; border-radius: 15px;
+            padding: 20px; margin-bottom: 15px;
+            text-decoration: none; display: block;
+            transition: 0.3s; position: relative; overflow: hidden;
+        }
+        .model-card:hover { border-color: var(--brand); transform: translateY(-3px); box-shadow: 0 5px 20px rgba(0, 223, 130, 0.1); }
+
+        .badge {
+            position: absolute; top: 15px; right: 15px;
+            background: var(--brand); color: #000;
+            font-size: 0.65rem; font-weight: 800; padding: 4px 10px;
+            border-radius: 20px; text-transform: uppercase;
+        }
+
+        .model-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+        .model-title { color: #FFF; font-weight: 700; font-size: 1.2rem; margin-bottom: 5px; display: block; }
+        .model-desc { color: #888; font-size: 0.8rem; display: block; }
+
+        /* --- PREÇO (ATUALIZADO) --- */
+        .price-card {
+            background: linear-gradient(145deg, #161616, #000);
+            border: 1px solid var(--brand);
+            border-radius: 20px; padding: 30px 20px;
+            margin-top: 40px; margin-bottom: 20px;
+            position: relative;
         }
         
-        .fade-in {
-            animation: fadeIn 0.5s ease-out;
-        }
-        
-        .slide-up {
-            animation: slideUp 0.5s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .price-tag {
+            background: var(--brand); color: #000;
+            font-weight: 800; padding: 5px 15px; border-radius: 20px;
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;
+            display: inline-block; margin-bottom: 15px;
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .price-old { color: #666; text-decoration: line-through; font-size: 0.9rem; }
+        .price-new { color: #FFF; font-size: 2.5rem; font-weight: 800; font-family: 'Space Grotesk'; margin: 5px 0; }
+        .price-sub { color: var(--text-muted); font-size: 0.8rem; margin-bottom: 25px; }
+
+        .price-features { text-align: left; margin-bottom: 20px; padding-left: 10px; }
+        .feature-item { display: flex; gap: 10px; margin-bottom: 10px; font-size: 0.85rem; color: #DDD; align-items: center; }
+        .check { color: var(--brand); }
+
+        .maintenance-box {
+            background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px;
+            font-size: 0.7rem; color: #888; text-align: center; border: 1px dashed #333;
         }
 
-        body {
-            background-color: #09090b; /* Zinc 950 */
-            color: white;
-            font-family: 'Inter', sans-serif;
+        /* --- BOTÃO WHATSAPP --- */
+        .btn-cta {
+            background: var(--brand); color: #000;
+            width: 100%; padding: 18px; border-radius: 50px;
+            font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+            text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px;
+            margin-top: 20px; box-shadow: 0 0 20px var(--brand-glow);
+            animation: pulse 2s infinite;
         }
+
+        .footer { margin-top: 50px; font-size: 0.7rem; color: #444; }
+
+        @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0, 223, 130, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(0, 223, 130, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 223, 130, 0); } }
+
     </style>
 </head>
-<body class="antialiased min-h-screen flex justify-center bg-black selection:bg-brand selection:text-black">
+<body>
 
-    <div class="w-full max-w-md px-6 py-12 relative">
+    <div class="container">
         
-        <header class="text-center group mb-8 fade-in">
-            <div class="relative mb-6 mx-auto w-fit">
-                <div class="w-28 h-28 rounded-full border-4 border-brand p-1 bg-gradient-to-tr from-brand-dark to-black overflow-hidden shadow-[0_0_30px_rgba(0,223,130,0.4)] transition-transform duration-500 hover:scale-110 mx-auto">
-                    <div class="w-full h-full bg-black flex items-center justify-center rounded-full overflow-hidden">
-                        <img src="./logo.png" alt="Migre Agora Logo" class="w-4/5 h-4/5 object-contain drop-shadow-[0_0_15px_#00df82]" onerror="this.onerror=null; this.src='https://placehold.co/100x100/000000/00df82?text=MA';">
-                    </div>
-                </div>
-                <div class="absolute -bottom-2 -right-2 bg-brand text-black text-xs font-black px-2 py-1 rounded-md rotate-12 shadow-lg animate-pulse-slow">
-                    OFF-TAX
-                </div>
+        <!-- HERO -->
+        <div class="profile-area">
+            <div class="logo-wrapper">
+                <img src="logo.png" alt="Migre Agora" class="logo-img">
             </div>
+            <!-- TEXTO ATUALIZADO: INTELIGENTE -->
+            <h1>Seu agendamento <span class="highlight">inteligente</span>.<br>Suas mãos livres.</h1>
+            <p class="bio">
+                Tecnologia exclusiva para <strong>Nail Designers, Lashes e Micropigmentadoras</strong>.
+            </p>
+        </div>
+
+        <!-- SEÇÃO DE PERSUASÃO -->
+        <div class="why-section">
             
-            <h1 class="text-3xl font-black tracking-tighter uppercase mb-1">
-                Migre <span class="text-brand">Agora</span>
-            </h1>
-            <p class="text-brand font-bold text-sm tracking-widest uppercase">
-                Tecnologia contra Taxas 🦅
-            </p>
-        </header>
-
-        <section class="w-full bg-zinc-900/80 border-l-4 border-brand p-6 rounded-r-xl shadow-xl backdrop-blur-sm mb-8 slide-up">
-            <div class="flex items-center gap-2 mb-4">
-                <span class="text-2xl text-brand">⚡</span>
-                <h2 class="text-lg font-black uppercase tracking-tight">A Missão</h2>
-            </div>
-            <p class="text-zinc-400 text-sm leading-relaxed">
-                Nascemos de uma revolta: ver o dono do negócio trabalhar 14h por dia e deixar 
-                <span class="text-white font-bold underline decoration-brand mx-1">27% do lucro</span> 
-                na mesa de aplicativos bilionários.
-            </p>
-            <p class="mt-4 text-zinc-400 text-sm leading-relaxed">
-                Acreditamos que o cliente é seu. O lucro é seu. E a liberdade digital não deveria custar uma mensalidade.
-            </p>
-            <div class="mt-4 pt-4 border-t border-zinc-800 italic text-brand font-bold text-xs">
-                Nós construímos sua independência.
-            </div>
-        </section>
-
-        <section class="w-full bg-zinc-900 border border-zinc-800 rounded-2xl p-6 mb-8 slide-up" style="animation-delay: 0.1s;">
-            <h3 class="text-brand font-black text-xs uppercase mb-4 tracking-widest">Calculadora de Liberdade</h3>
-            
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-[10px] text-zinc-500 uppercase font-bold mb-1 ml-1">Faturamento Mensal (R$)</label>
-                    <input type="number" id="revenueInput" placeholder="Ex: 10000" class="w-full bg-black border border-zinc-800 rounded-lg p-3 text-white focus:border-brand outline-none transition-all placeholder-zinc-700">
-                </div>
-
-                <div class="grid grid-cols-3 gap-2">
-                    <button onclick="selectPlatform(this, 'ifood')" class="platform-btn bg-brand border-brand text-black text-[10px] font-black p-2 rounded-md border transition-all uppercase">iFood</button>
-                    <button onclick="selectPlatform(this, 'ubereats')" class="platform-btn bg-black border-zinc-800 text-zinc-500 hover:border-zinc-700 text-[10px] font-black p-2 rounded-md border transition-all uppercase">UberEats</button>
-                    <button onclick="selectPlatform(this, 'rappi')" class="platform-btn bg-black border-zinc-800 text-zinc-500 hover:border-zinc-700 text-[10px] font-black p-2 rounded-md border transition-all uppercase">Rappi</button>
-                </div>
-
-                <button id="calcBtn" onclick="calculateProfit()" class="w-full bg-white text-black font-black uppercase text-sm py-3 rounded-lg hover:bg-brand transition-all disabled:opacity-50 disabled:cursor-not-allowed">
-                    Ver Diagnóstico Financeiro
-                </button>
-
-                <div id="resultArea" class="hidden mt-6 pt-6 border-t border-zinc-800 space-y-4 fade-in">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-black p-3 rounded-xl border border-red-900/30 text-center">
-                            <span class="block text-[8px] text-red-500 font-black uppercase">Perda Anual</span>
-                            <span id="yearlyLossDisplay" class="text-lg font-black text-red-500 leading-none">R$ 0,00</span>
-                        </div>
-                        <div class="bg-black p-3 rounded-xl border border-brand-dark/30 text-center">
-                            <span class="block text-[8px] text-brand font-black uppercase">Recuperável</span>
-                            <span id="potentialSavingsDisplay" class="text-lg font-black text-brand leading-none">R$ 0,00</span>
-                        </div>
-                    </div>
-                    <p class="text-xs text-zinc-400 italic text-center px-4 leading-relaxed">
-                        "Você está deixando uma fatia enorme do seu trabalho duro na mesa de bilionários."
-                    </p>
+            <div class="why-card">
+                <div class="why-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                <div class="why-content">
+                    <h3>Não perca tempo (e dinheiro)</h3>
+                    <p>Pare de responder "qual o preço?" o dia todo. O site educa sua cliente e entrega tudo pronto.</p>
                 </div>
             </div>
-        </section>
 
-        <section class="w-full space-y-4 mb-8 slide-up" style="animation-delay: 0.2s;">
-            <button onclick="openEbook()" class="w-full group relative flex items-center justify-between p-5 rounded-2xl transition-all duration-300 border bg-gradient-to-r from-brand to-brand-light border-transparent text-black shadow-[0_10px_30px_rgba(0,223,130,0.3)] transform hover:-translate-y-1">
-                <div class="flex items-center gap-4">
-                    <div class="relative animate-float">
-                        <span class="text-2xl">🗺️</span>
-                        <span class="absolute -top-2 -left-2 bg-white text-black text-[7px] font-black px-1 rounded animate-pulse">GRÁTIS</span>
-                    </div>
-                    <div class="flex flex-col text-left">
-                        <span class="font-black uppercase text-sm leading-none mb-1 text-black">Ler Mapa do Lucro Local</span>
-                        <span class="text-[10px] font-medium opacity-70 text-black">Guia interativo de estratégias (Pule as taxas)</span>
-                    </div>
-                </div>
-                <span class="text-xl transition-transform duration-300 group-hover:translate-x-1 text-black">➜</span>
-                <div class="absolute inset-0 bg-white/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </button>
-
-            <a href="https://wa.me/5548991871746?text=Ol%C3%A1%2C%20quero%20conhecer%20o%20sistema%20da%20Migre%20Agora." target="_blank" class="w-full group relative flex items-center justify-between p-5 rounded-2xl transition-all duration-300 border bg-zinc-900 border-brand/20 hover:border-brand text-white transform hover:-translate-y-1">
-                <div class="flex items-center gap-4">
-                    <span class="text-2xl">🚀</span>
-                    <div class="flex flex-col text-left">
-                        <span class="font-black uppercase text-sm leading-none mb-1 text-white">Quero minha Loja Livre de Taxas</span>
-                        <span class="text-[10px] font-medium opacity-70 text-zinc-400">Fale diretamente com um especialista</span>
-                    </div>
-                </div>
-                <span class="text-xl transition-transform duration-300 group-hover:translate-x-1 text-brand">➜</span>
-            </a>
-
-            <a href="https://www.instagram.com/migreagora/" target="_blank" class="w-full group relative flex items-center justify-between p-5 rounded-2xl transition-all duration-300 border bg-zinc-900 border-zinc-800 hover:border-brand/50 text-white transform hover:-translate-y-1">
-                <div class="flex items-center gap-4">
-                    <span class="text-2xl">📸</span>
-                    <div class="flex flex-col text-left">
-                        <span class="font-black uppercase text-sm leading-none mb-1 text-white">Siga no Instagram</span>
-                        <span class="text-[10px] font-medium opacity-70 text-zinc-400">Conteúdo diário sobre lucro local</span>
-                    </div>
-                </div>
-                <span class="text-xl transition-transform duration-300 group-hover:translate-x-1 text-brand">➜</span>
-            </a>
-        </section>
-
-        <section class="w-full text-center mt-6 mb-12 slide-up" style="animation-delay: 0.3s;">
-            <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-4">
-                Próximos Negócios Independentes
-            </h3>
-            <div class="grid grid-cols-2 gap-3">
-                <div class="h-24 rounded-xl border-2 border-dashed border-zinc-800 flex flex-col items-center justify-center group hover:border-brand/30 transition-all cursor-pointer bg-zinc-900/50">
-                    <span class="text-zinc-600 text-[10px] font-bold uppercase group-hover:text-brand">Vaga Disponível</span>
-                    <span class="text-zinc-700 text-[8px] mt-1 group-hover:text-brand/70 tracking-widest uppercase">Setor Alimentar</span>
-                </div>
-                <div class="h-24 rounded-xl border-2 border-dashed border-zinc-800 flex flex-col items-center justify-center group hover:border-brand/30 transition-all cursor-pointer bg-zinc-900/50">
-                    <span class="text-zinc-600 text-[10px] font-bold uppercase group-hover:text-brand">Sua Loja Aqui</span>
-                    <span class="text-zinc-700 text-[8px] mt-1 group-hover:text-brand/70 tracking-widest uppercase">Pare de perder lucro</span>
+            <div class="why-card">
+                <div class="why-icon"><i class="fas fa-gem"></i></div>
+                <div class="why-content">
+                    <h3>O fim do "Amadorismo"</h3>
+                    <p>Chega de mandar PDF ou texto solto no WhatsApp. Tenha uma vitrine digital à altura do seu trabalho.</p>
                 </div>
             </div>
-            <p class="mt-4 text-[9px] text-zinc-600 uppercase font-bold tracking-tighter">
-                Selecione seu nicho e comece a migração hoje.
-            </p>
-        </section>
 
-        <footer class="w-full text-center mt-12 mb-6 opacity-50">
-            <div class="text-[9px] text-zinc-600 font-medium leading-loose uppercase tracking-[0.1em]">
-                © 2025 Migre Agora Inc. • Palhoça / SC<br />
-                <span class="text-zinc-500 font-black">O físico nunca foi o final.</span>
-            </div>
-            <div class="mt-4 flex items-center justify-center gap-4 text-zinc-700">
-                <div class="h-px w-8 bg-zinc-800"></div>
-                <span class="text-[8px] font-black uppercase tracking-widest">Nós servimos quem serve</span>
-                <div class="h-px w-8 bg-zinc-800"></div>
-            </div>
-        </footer>
-
-    </div>
-
-    <div id="ebookModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 md:p-12 fade-in">
-        <div class="absolute inset-0 bg-black/95 backdrop-blur-xl" onclick="closeEbook()"></div>
-        
-        <div class="relative w-full max-w-2xl h-[85vh] bg-zinc-900 rounded-[2.5rem] shadow-[0_0_100px_rgba(0,223,130,0.15)] flex flex-col overflow-hidden border border-zinc-800">
-            <div class="flex justify-between items-center px-8 py-6 border-b border-zinc-800/50">
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
-                    <span class="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500">Lendo agora</span>
+            <div class="why-card">
+                <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="why-content">
+                    <h3>Filtro de Curiosos</h3>
+                    <p>A cliente só te chama se realmente quiser agendar. O sistema avisa sobre taxas e regras antes.</p>
                 </div>
-                <button onclick="closeEbook()" class="text-zinc-500 hover:text-white transition-colors text-2xl font-light">✕</button>
             </div>
 
-            <div class="flex-1 overflow-y-auto px-8 py-10 md:px-16 scrollbar-hide relative">
-                <div id="ebookPages" class="h-full">
-                    </div>
+        </div>
+
+        <!-- AVISO DE UNIVERSALIDADE -->
+        <div class="universal-notice">
+            <i class="fas fa-info-circle" style="color:var(--brand)"></i> <strong>Atenção Lashes & Designers:</strong><br>
+            Os modelos abaixo usam fotos de unhas como exemplo, mas o sistema é 100% adaptável para <strong>Cílios e Sobrancelhas</strong> (trocamos fotos, serviços e preços).
+        </div>
+
+        <!-- VITRINE -->
+        <div class="section-title">Escolha seu Modelo</div>
+
+        <a href="https://demo-authority.vercel.app/" target="_blank" class="model-card">
+            <span class="badge">Mais Vendido</span>
+            <span class="model-icon">💎</span>
+            <span class="model-title">Modelo Authority</span>
+            <span class="model-desc">Estilo Luxo/Dark. Foco na sua imagem profissional. Ideal para quem quer cobrar alto.</span>
+        </a>
+
+        <a href="https://demo-showcase-ma.vercel.app/" target="_blank" class="model-card">
+            <span class="badge">Novo</span>
+            <span class="model-icon">🌸</span>
+            <span class="model-title">Modelo Showcase</span>
+            <span class="model-desc">Estilo Clean/Light. Foco nos detalhes do trabalho. Ideal para portfólio visual.</span>
+        </a>
+
+        <!-- TABELA DE PREÇO -->
+        <div class="price-card">
+            <span class="price-tag">Promoção Lançamento 2026</span>
+            <div>
+                <span class="price-old">De R$ 1.297,00</span>
+                <div class="price-new">Por R$ 797,00</div>
+                <div class="price-sub">Pagamento Único (50% entrada)</div>
             </div>
 
-            <div class="px-8 py-8 border-t border-zinc-800/50 bg-black/20 flex flex-col items-center gap-4">
-                <div class="flex justify-between w-full max-w-sm gap-4">
-                    <button id="prevBtn" onclick="changePage(-1)" class="flex-1 py-4 px-6 rounded-2xl border-2 border-brand/20 text-brand font-black uppercase text-xs hover:bg-brand/10 transition-all disabled:opacity-20 disabled:cursor-not-allowed">
-                        ← Anterior
-                    </button>
-                    <button id="nextBtn" onclick="changePage(1)" class="flex-1 py-4 px-6 rounded-2xl bg-brand text-black font-black uppercase text-xs hover:scale-105 transition-transform">
-                        Próxima →
-                    </button>
-                </div>
-                <span id="pageIndicator" class="text-[10px] font-black uppercase tracking-widest text-zinc-600">
-                    Página 1 de 6
-                </span>
+            <div class="price-features">
+                <div class="feature-item"><i class="fas fa-check-circle check"></i> Site Exclusivo com sua Marca</div>
+                <!-- TEXTO ATUALIZADO: SOLICITAÇÃO OTIMIZADA -->
+                <div class="feature-item"><i class="fas fa-check-circle check"></i> Solicitação Inteligente</div>
+                <div class="feature-item"><i class="fas fa-check-circle check"></i> Link Vitalício</div>
+                <div class="feature-item"><i class="fas fa-check-circle check"></i> Entrega em 48h</div>
+            </div>
+
+            <div class="maintenance-box">
+                <strong>+ R$ 47,90/mês</strong><br>
+                (Hospedagem + Suporte + Atualização de Fotos)<br>
+                <em>*Alterações estruturais de layout cobradas à parte.</em>
             </div>
         </div>
+
+        <!-- CTA FINAL -->
+        <a href="https://wa.me/5548991871746?text=Ol%C3%A1%2C%20vi%20os%20modelos%20no%20site%20e%20quero%20fechar%20na%20promo%C3%A7%C3%A3o." class="btn-cta">
+            <i class="fab fa-whatsapp"></i> Quero meu Site
+        </a>
+
+        <div class="footer">
+            © 2026 Migre Agora Tecnologia<br>O físico nunca foi o final.
+        </div>
+
     </div>
 
-    <script>
-        // --- Lógica da Calculadora ---
-        let selectedPlatform = 'ifood';
-
-        function selectPlatform(btn, platform) {
-            selectedPlatform = platform;
-            // Reset styles
-            document.querySelectorAll('.platform-btn').forEach(b => {
-                b.className = "platform-btn bg-black border-zinc-800 text-zinc-500 hover:border-zinc-700 text-[10px] font-black p-2 rounded-md border transition-all uppercase";
-            });
-            // Active style
-            btn.className = "platform-btn bg-brand border-brand text-black text-[10px] font-black p-2 rounded-md border transition-all uppercase";
-        }
-
-        function calculateProfit() {
-            const revenue = parseFloat(document.getElementById('revenueInput').value);
-            const btn = document.getElementById('calcBtn');
-            const resultArea = document.getElementById('resultArea');
-
-            if (!revenue || isNaN(revenue)) return;
-
-            // Loading State
-            btn.disabled = true;
-            btn.innerText = "Analisando perdas...";
-
-            setTimeout(() => {
-                const monthlyLoss = revenue * 0.27;
-                const yearlyLoss = monthlyLoss * 12;
-                const potentialSavings = yearlyLoss * 0.9; // 90% savings estimate
-
-                document.getElementById('yearlyLossDisplay').innerText = yearlyLoss.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-                document.getElementById('potentialSavingsDisplay').innerText = potentialSavings.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-
-                resultArea.classList.remove('hidden');
-                btn.innerText = "Recalcular";
-                btn.disabled = false;
-            }, 1000);
-        }
-
-        // --- Lógica do Ebook Viewer ---
-        let currentPage = 0;
-        const totalPages = 6;
-
-        const pagesContent = [
-            // Página 1: Capa
-            `<div class="flex flex-col items-center justify-center h-full text-center space-y-6 fade-in">
-                <div class="text-4xl font-black text-brand tracking-widest">MA</div>
-                <div class="text-7xl drop-shadow-[0_0_20px_#00df8266]">🗺️</div>
-                <h1 class="text-5xl md:text-6xl font-black leading-tight">MAPA DO<br/><span class="text-brand">LUCRO LOCAL</span></h1>
-                <p class="text-zinc-400 text-lg max-w-sm">O passo a passo para se libertar das taxas de aplicativo e vender direto para o vizinho que está com fome.</p>
-                <p class="text-brand font-bold uppercase tracking-widest text-xs">Produzido por Migre Agora</p>
-            </div>`,
-            // Página 2: Matemática
-            `<div class="space-y-6 fade-in">
-                <h2 class="text-3xl font-black text-brand uppercase tracking-tighter">💰 Por que apertar o botão certo?</h2>
-                <div class="bg-red-500/10 border-2 border-red-500 p-6 rounded-2xl">
-                    <p class="text-lg font-bold">📊 O iFood te cobra até 27% por pedido.</p>
-                    <p class="text-zinc-400 mt-2 text-sm">Num açaí de R$ 30,00, eles ficam com quase <span class="text-red-500 font-black">R$ 8,00</span>.</p>
-                </div>
-                <div class="bg-brand/10 border-2 border-brand p-6 rounded-2xl text-lg font-black text-center">
-                    Com o Tráfego Local, você usa esses mesmos R$ 8,00 para mostrar seu açaí para até <span class="text-brand">1.000 pessoas</span> que moram a 2km da sua loja.
-                </div>
-                <div class="bg-brand/10 border-l-4 border-brand p-4 text-brand font-bold italic">
-                    🎯 O cliente é SEU, não do aplicativo.
-                </div>
-                <p class="text-zinc-400 text-sm leading-relaxed">
-                    Quando você impulsiona corretamente no Instagram ou Facebook, você constrói sua própria base de clientes. Eles salvam seu número, te seguem, e voltam a pedir direto com você.
-                </p>
-            </div>`,
-            // Página 3: Passo 1
-            `<div class="space-y-6 fade-in">
-                <h2 class="text-3xl font-black text-brand uppercase tracking-tighter">📸 Passo 1: A Isca Perfeita</h2>
-                <p class="text-red-500 font-black text-lg">❌ Não impulsione foto de "Bom dia" ou frases motivacionais.</p>
-                <div class="bg-zinc-800/50 p-6 rounded-2xl space-y-4">
-                    <h4 class="text-brand font-black uppercase text-sm tracking-widest">✅ Checklist da Foto que Vende:</h4>
-                    <div class="flex gap-4 items-start">
-                        <span class="bg-brand text-black w-6 h-6 rounded-full flex items-center justify-center font-black text-xs shrink-0">1</span>
-                        <p class="text-sm text-zinc-300"><strong>Foto de comida que dá fome (Foodporn).</strong> Close no produto. Mostre a calda escorrendo. Deixe a pessoa com água na boca.</p>
-                    </div>
-                    <div class="flex gap-4 items-start">
-                        <span class="bg-brand text-black w-6 h-6 rounded-full flex items-center justify-center font-black text-xs shrink-0">2</span>
-                        <p class="text-sm text-zinc-300"><strong>Legenda curta com Chamada para Ação (CTA):</strong> "Bateu a fome? Peça agora pelo link na bio."</p>
-                    </div>
-                </div>
-                <div class="bg-yellow-500 text-black p-4 rounded-xl font-bold text-sm">
-                    ⭐ DICA DE OURO: Vídeos curtos (Reels) da calda caindo funcionam 3x mais.
-                </div>
-            </div>`,
-            // Página 4: Passo 2
-            `<div class="space-y-6 fade-in">
-                <h2 class="text-3xl font-black text-brand uppercase tracking-tighter">📍 Passo 2: O Segredo do Pino</h2>
-                <div class="space-y-2 text-zinc-300 text-sm">
-                    <p><strong>1.</strong> Clique no botão verde <strong>"Turbinar Publicação"</strong></p>
-                    <p><strong>2.</strong> Meta: Selecione <strong>"Mais visitas ao perfil"</strong></p>
-                    <p><strong>3.</strong> Público: <span class="text-red-500 font-black italic underline">NÃO USE O AUTOMÁTICO</span>. Selecione <strong>"Criar o seu"</strong></p>
-                </div>
-                <div class="bg-gradient-to-br from-brand to-brand-dark p-6 rounded-2xl text-black">
-                    <h3 class="font-black text-lg mb-3 uppercase italic">🎯 O GRANDE SEGREDO:</h3>
-                    <p class="text-sm font-bold mb-2">4. Em Localização, escolha "Local".</p>
-                    <p class="text-sm font-bold mb-2">5. Coloque o PINO em cima da sua loja.</p>
-                    <p class="text-sm font-bold">6. Defina o raio para 2km a 3km.</p>
-                </div>
-                <div class="border-l-4 border-brand p-4 bg-brand/5 italic text-sm text-zinc-400">
-                    Isso garante que só quem mora no seu bairro vai ver. Você não gasta dinheiro mostrando anúncio pra quem mora longe.
-                </div>
-            </div>`,
-            // Página 5: Investimento
-            `<div class="space-y-6 fade-in">
-                <h2 class="text-3xl font-black text-brand uppercase tracking-tighter">💵 Passo 3: O Investimento</h2>
-                <div class="bg-brand/10 border-2 border-brand/30 p-6 rounded-2xl space-y-2">
-                    <p class="text-lg font-black text-brand">💰 Comece com R$ 6,00 a R$ 10,00 por dia.</p>
-                    <p class="text-sm text-zinc-400 italic">Duração: Deixe rodando por 5 a 7 dias.</p>
-                </div>
-                <div class="bg-brand/10 p-6 rounded-2xl text-center">
-                    <span class="block text-brand font-black uppercase text-xs mb-2">A conta é simples:</span>
-                    <p class="text-sm text-zinc-300">Se você vender apenas <strong>1 açaí a mais por dia</strong>, o anúncio já se pagou. O resto é <strong>lucro puro</strong>.</p>
-                </div>
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-zinc-800/50 p-3 rounded-xl border border-brand/10">
-                        <span class="block text-[10px] text-brand font-black uppercase">Alcance</span>
-                        <span class="text-sm font-bold">~2.000 pessoas</span>
-                    </div>
-                    <div class="bg-zinc-800/50 p-3 rounded-xl border border-brand/10">
-                        <span class="block text-[10px] text-brand font-black uppercase">Pedidos</span>
-                        <span class="text-sm font-bold">3 a 10 diretos</span>
-                    </div>
-                </div>
-            </div>`,
-            // Página 6: Conclusão
-            `<div class="space-y-6 text-center fade-in">
-                <h2 class="text-3xl font-black text-brand uppercase tracking-tighter">🚀 Agora é com Você!</h2>
-                <p class="text-zinc-300">Para converter esse cliente de forma profissional, você precisa de:</p>
-                <ul class="text-left space-y-2 text-sm text-zinc-400 mx-auto max-w-sm">
-                    <li class="flex gap-2 items-center"><span class="text-brand font-black">✓</span> Cardápio digital sem taxas</li>
-                    <li class="flex gap-2 items-center"><span class="text-brand font-black">✓</span> Estratégia de conversão no Direct</li>
-                    <li class="flex gap-2 items-center"><span class="text-brand font-black">✓</span> Sistema de pedidos organizado</li>
-                </ul>
-                <div class="bg-gradient-to-r from-brand to-brand-dark p-8 rounded-3xl text-black space-y-4 shadow-[0_10px_40px_rgba(0,223,130,0.3)]">
-                    <h3 class="font-black text-xl uppercase italic">Precisa de ajuda?</h3>
-                    <p class="text-sm font-bold opacity-90">A Migre Agora ajuda você a montar todo o sistema e dominar seu bairro.</p>
-                    <button onclick="window.open('https://wa.me/5548991871746?text=Ol%C3%A1%2C%20conclui%20a%20leitura%20do%20mapa%20e%20quero%20conhecer%20os%20pr%C3%B3ximos%20passos!')" class="bg-black text-brand font-black px-6 py-3 rounded-full text-sm uppercase hover:scale-105 transition-transform w-full shadow-lg">
-                        💬 Falar com o Especialista
-                    </button>
-                </div>
-                <div class="pt-6 opacity-40">
-                    <span class="text-xs font-black tracking-widest uppercase">Migre Agora</span>
-                </div>
-            </div>`
-        ];
-
-        function renderPage() {
-            const container = document.getElementById('ebookPages');
-            container.innerHTML = pagesContent[currentPage];
-            
-            // Update buttons state
-            document.getElementById('prevBtn').disabled = currentPage === 0;
-            const nextBtn = document.getElementById('nextBtn');
-            nextBtn.innerText = currentPage === totalPages - 1 ? 'Concluir' : 'Próxima →';
-            
-            // Update indicator
-            document.getElementById('pageIndicator').innerText = `Página ${currentPage + 1} de ${totalPages}`;
-        }
-
-        function openEbook() {
-            currentPage = 0;
-            renderPage();
-            document.getElementById('ebookModal').classList.remove('hidden');
-        }
-
-        function closeEbook() {
-            document.getElementById('ebookModal').classList.add('hidden');
-        }
-
-        function changePage(delta) {
-            const newPage = currentPage + delta;
-            if (newPage >= 0 && newPage < totalPages) {
-                currentPage = newPage;
-                renderPage();
-            } else if (newPage >= totalPages) {
-                closeEbook();
-            }
-        }
-    </script>
 </body>
 </html>
