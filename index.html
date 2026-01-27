@@ -109,9 +109,10 @@
         // --- DATA ---
         
         /* 
-           AJUSTE RESPONSIVO: 
-           Usei classes 'md:' para diferenciar posicionamento desktop vs mobile.
-           No mobile, as bolhas ficam nos cantos extremos ou ocultas para não tapar o texto.
+           AJUSTE MOBILE:
+           - Todos os itens agora estão visíveis no mobile (removemos o 'hidden').
+           - Posições Mobile (classes sem prefixo) ajustadas para rodear o texto (Top 0-30% e Bottom 0-30%).
+           - Posições Desktop (prefixo md:) mantidas nas laterais conforme solicitado anteriormente.
         */
         const testimonialsData = [
             {
@@ -119,7 +120,7 @@
                 name: "Dra. J. M.",
                 role: "Harmonização Facial",
                 text: "Minha agenda mudou. As clientes já chegam sabendo o preço e prontas pra pagar. O filtro do agendamento é surreal.",
-                // Mobile: Topo Esquerdo (Canto) | Desktop: Topo Esquerdo (Mais centralizado)
+                // Mobile: Canto Superior Esquerdo | Desktop: Lateral Superior Esquerda
                 position: "top-[2%] left-[2%] md:top-[5%] md:left-[10%]",
                 animation: "animate-float-slow"
             },
@@ -128,8 +129,8 @@
                 name: "Studio S.",
                 role: "Extensão de Cílios",
                 text: "O site carrega tão rápido que a cliente nem percebe que saiu do Instagram. Passou muito profissionalismo.",
-                // Mobile: Oculto para limpar visão | Desktop: Visível
-                position: "hidden md:block top-[15%] right-[15%]",
+                // Mobile: Topo Direito | Desktop: Lateral Superior Direita
+                position: "top-[8%] right-[2%] md:top-[15%] md:right-[15%]",
                 animation: "animate-float-medium"
             },
             {
@@ -137,8 +138,8 @@
                 name: "L. Academy",
                 role: "Mentora Beauty",
                 text: "Melhor investimento do ano. Paguei uma vez só e me livrei das mensalidades do Wix.",
-                // Mobile: Base Esquerda (Canto) | Desktop: Base Esquerda
-                position: "bottom-[5%] left-[2%] md:bottom-[10%] md:left-[20%]",
+                // Mobile: Fundo Esquerdo | Desktop: Lateral Inferior Esquerda
+                position: "bottom-[2%] left-[2%] md:bottom-[10%] md:left-[20%]",
                 animation: "animate-float-fast"
             },
             {
@@ -146,8 +147,8 @@
                 name: "M. Nails",
                 role: "Nail Designer",
                 text: "Antes eu perdia horas explicando preços no WhatsApp. Agora o link faz tudo por mim.",
-                // Mobile: Oculto | Desktop: Visível
-                position: "hidden md:block top-[40%] left-[5%]",
+                // Mobile: Meio-Topo Esquerdo | Desktop: Lateral Central Esquerda
+                position: "top-[20%] left-[-2%] md:top-[40%] md:left-[5%]",
                 animation: "animate-float-slow delay-1000"
             },
             {
@@ -155,8 +156,8 @@
                 name: "Clínica F.",
                 role: "Estética Avançada",
                 text: "A estética 'Apple' do site combinou perfeitamente com o público high-ticket que eu queria atrair.",
-                // Mobile: Base Direita (Canto) | Desktop: Base Direita
-                position: "bottom-[15%] right-[2%] md:bottom-[30%] md:right-[10%]",
+                // Mobile: Fundo Direito | Desktop: Lateral Inferior Direita
+                position: "bottom-[10%] right-[2%] md:bottom-[30%] md:right-[10%]",
                 animation: "animate-float-medium delay-500"
             },
             {
@@ -164,8 +165,8 @@
                 name: "A. Brows",
                 role: "Micropigmentação",
                 text: "Eu tinha vergonha do meu Linktree. Agora tenho orgulho de mandar meu link para as clientes.",
-                // Mobile: Oculto | Desktop: Lateral Direita
-                position: "hidden md:block top-[50%] right-[5%]",
+                // Mobile: Meio-Fundo Direito | Desktop: Lateral Central Direita
+                position: "bottom-[22%] right-[-2%] md:top-[50%] md:right-[5%]",
                 animation: "animate-float-fast delay-200"
             },
             {
@@ -173,8 +174,8 @@
                 name: "Dra. C. S.",
                 role: "Biomédica",
                 text: "O suporte técnico é incrível. Precisei mudar uma foto e me ajudaram na hora. Recomendo.",
-                // Mobile: Oculto | Desktop: Visível
-                position: "hidden md:block bottom-[5%] right-[40%]",
+                // Mobile: Fundo Centro-Direita | Desktop: Rodapé Direito
+                position: "bottom-[2%] right-[25%] md:bottom-[5%] md:right-[40%]",
                 animation: "animate-float-slow delay-1500"
             },
             {
@@ -182,7 +183,8 @@
                 name: "R. Hair",
                 role: "Terapia Capilar",
                 text: "Zero mensalidades. Só isso já valeu a pena. O site se pagou na primeira semana.",
-                position: "hidden md:block top-[25%] left-[30%]",
+                // Mobile: Topo Centro-Esquerda | Desktop: Lateral Superior Interna
+                position: "top-[12%] left-[20%] md:top-[25%] md:left-[30%]",
                 animation: "animate-float-medium delay-700"
             },
             {
@@ -190,8 +192,8 @@
                 name: "J. Glow",
                 role: "Maquiadora",
                 text: "Landing Page perfeita. Simples, direta e muito chique. Minha conversão aumentou 40%.",
-                // Mobile: Oculto | Desktop: Lateral Esquerda
-                position: "hidden md:block bottom-[40%] left-[5%]",
+                // Mobile: Meio-Fundo Esquerdo | Desktop: Lateral Inferior Esquerda
+                position: "bottom-[25%] left-[-2%] md:bottom-[40%] md:left-[5%]",
                 animation: "animate-float-fast delay-300"
             },
             {
@@ -199,8 +201,8 @@
                 name: "Instituto B.",
                 role: "Cursos Profissionalizantes",
                 text: "Migrei toda a minha estrutura de cursos para a Migre Agora. A velocidade de carregamento é incomparável.",
-                // Mobile: Topo Direito (Canto) | Desktop: Topo Direito
-                position: "top-[5%] right-[2%] md:right-[40%]",
+                // Mobile: Topo Direito (abaixo do Studio S) | Desktop: Topo Direito
+                position: "top-[25%] right-[2%] md:top-[5%] md:right-[40%]",
                 animation: "animate-float-slow delay-2000"
             }
         ];
@@ -332,7 +334,8 @@
                         return (
                             <div 
                                 key={item.id}
-                                className={`absolute ${item.position} ${item.animation} z-20 transition-all duration-500 ease-out`}
+                                // Adicionado scale-90 no mobile para as "pílulas" não ficarem gigantes
+                                className={`absolute ${item.position} ${item.animation} z-20 transition-all duration-500 ease-out scale-90 md:scale-100 origin-center`}
                             >
                                 {isActive ? (
                                     // EXPANDED CARD STATE
@@ -362,7 +365,7 @@
                                         <div className="absolute bottom-0 left-0 h-1 bg-rose-500 transition-all duration-[3000ms] ease-linear w-0" style={{ width: isActive ? '100%' : '0%' }}></div>
                                     </div>
                                 ) : (
-                                    // COLLAPSED BUBBLE STATE
+                                    // COLLAPSED BUBBLE STATE (PILL)
                                     <button 
                                         onClick={() => handleActivate(item.id)}
                                         className="group flex items-center gap-3 pl-2 pr-4 py-2 bg-zinc-900/80 border border-zinc-700/50 backdrop-blur-md rounded-full hover:scale-110 hover:border-green-500/50 transition-all shadow-lg cursor-pointer hover:bg-zinc-800"
@@ -375,9 +378,10 @@
                                                 <span className="w-1 h-1 bg-white rounded-full animate-pulse"></span>
                                             </div>
                                         </div>
-                                        <div className="text-left hidden sm:block">
-                                            <div className="text-[9px] text-green-400 font-bold uppercase tracking-wider">Nova Mensagem</div>
-                                            <div className="text-xs font-bold text-zinc-200 group-hover:text-white truncate max-w-[100px]">{item.name}</div>
+                                        {/* REMOVIDO 'hidden sm:block' para aparecer no mobile também */}
+                                        <div className="text-left block">
+                                            <div className="text-[8px] md:text-[9px] text-green-400 font-bold uppercase tracking-wider">Nova Mensagem</div>
+                                            <div className="text-[10px] md:text-xs font-bold text-zinc-200 group-hover:text-white truncate max-w-[80px] md:max-w-[100px]">{item.name}</div>
                                         </div>
                                     </button>
                                 )}
